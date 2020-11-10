@@ -1,13 +1,10 @@
 #!/bin/bash
 
-#sudo apt-get update -y
-#sudo apt-get install apache2 php -y
-#sudo apt-get install -y php-{bcmath,bz2,intl,gd,mbstring,mysql,zip} && sudo apt-get install libapache2-mod-php -y
+# Installation Process for CentOS
 
-#sudo systemctl enable apache2.service
-#sudo systemctl restart apache2.service
+# Installs Apache, PHP and Dependencies
 yum update
-yum install httpd php php-mysql -y
+yum install httpd php php-mysql sed -y
 yum install php-{bcmath,bz2,cli,common,dba,devel,intl,gd,mbstring,mysql,zip} && sudo apt-get install libapache2-mod-php -y
 
 systemctl enable httpd.service
@@ -17,7 +14,8 @@ LAB_DATABASE_IP=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.ip' |
 LAB_DATABASE_FQDN=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.fqdn' | awk -F\" '{print $4}'`
 LAB_DATABASE_PASSWD=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.password' | awk -F\" '{print $4}'`
 LAB_DATABASE_NAME=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.name' | awk -F\" '{print $4}'`
-LAB_DATABASE_NAME=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.user' | awk -F\" '{print $4}'`
+LAB_DATABASE_USER=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.user' | awk -F\" '{print $4}'`
 
-echo "DATABASE: $LAB_DATABASE_IP" >> /tmp/dploy.log
-echo "DATABASE: $LAB_DATABASE_FQDN" >> /tmp/dploy.log
+echo "DATABASE IP: $LAB_DATABASE_IP" >> /tmp/dploy.log
+echo "DATABASE FQDN: $LAB_DATABASE_FQDN" >> /tmp/dploy.log
+echo "DATABASE User: $LAB_DATABASE_USER" >> /tmp/dploy.log

@@ -3,7 +3,7 @@
 <body>
 <?php
 
-$con = mysqli_connect('vm-web-db-n01.acme.adm', 'webuser', 'tefvdc1$', 'acmedb');
+$con = mysqli_connect('{lab.db.fqdn}', '{lab.db.user}', '{lab.db.password}', 'acmedb');
 
 $id= $_GET['id'];
 $query = "SELECT * FROM `posts` WHERE id=". $id;

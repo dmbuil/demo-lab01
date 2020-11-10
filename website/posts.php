@@ -3,33 +3,31 @@
 <style>body{font-family: "Segoe UI";}</style>
 </head>
 	<body>
-		<h1>My dFW Demo Site</h1>
+		<h1>VDC Demo Site</h1>
 
 		<?php
 		$hn=gethostname();
 		echo "<p><i>Proudly served from node: ".$hn."</i></p>";
 		?>
-
+		<p>Database Server: {lab.db.fqdn}</p>
 		<a href='new.php'>Create new Post</><br>
 		<a href='posts.php?delete=true'>Delete all Posts</a>
 
 		<?php
-		function deleteposts(){
-		        $con = mysqli_connect('vm-web-db-n01.acme.adm', 'webuser', 'tefvdc1$');
-		        mysqli_select_db($con, 'acmedb');
-
-		        $result = mysqli_query($con, "DELETE FROM `posts`");
-		}
-
+		# Delete Posts
 		if (isset($_GET['delete'])){
-		        deleteposts();
+			$con = mysqli_connect('{lab.db.fqdn}', '{lab.db.user}', '{lab.db.password}');
+			mysqli_select_db($con, 'acmedb');
+
+			$result = mysqli_query($con, "DELETE FROM `posts`");
 		}
 
-		$con = mysqli_connect('vm-web-db-n01.acme.adm', 'webuser', 'tefvdc1$');
+		$con = mysqli_connect('{lab.db.fqdn}', '{lab.db.user}', '{lab.db.password}');
 		mysqli_select_db($con, 'acmedb');
 
 		$result = mysqli_query($con, "SELECT * FROM `posts`");
 
+		# Lists all posts
 		while ($post = mysqli_fetch_assoc($result)){
 		        $link = "<a href='post.php?id=".$post['id']. "'>";
 		        echo $link;

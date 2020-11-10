@@ -1,5 +1,5 @@
 <?php
-  $con = mysqli_connect('vm-web-db-n01.acme.adm', 'webuser', 'tefvdc1$');
+  $con = mysqli_connect('{lab.db.fqdn}', '{lab.db.user}', '{lab.db.password}');
   mysqli_select_db($con, 'acmedb');
   $hn = gethostname();
 
