@@ -15,5 +15,9 @@ LAB_DATABASE_USER=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.use
 
 echo "$LAB_DATABASE_IP -  $LAB_DATABASE_FQDN - $LAB_DATABASE_PASSWD - $LAB_DATABASE_NAME"
 
+systemctl start mysqld
+
 temppasswd=$(grep "temporary password" /var/log/mysqld.log | awk '{print $13}')
 mysqladmin -u root -p $temppasswd password $LAB_DATABASE_PASSWD
+
+systemctl restart mysqld
