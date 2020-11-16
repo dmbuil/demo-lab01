@@ -7,11 +7,11 @@ rpm -ivh /tmp/dploy/mysql80-community-release-el7-3.noarch.rpm
 
 yum install -y mysql-server
 
-LAB_DATABASE_IP=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.ip' | awk -F\" '{print $4}'`
-LAB_DATABASE_FQDN=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.fqdn' | awk -F\" '{print $4}'`
-LAB_DATABASE_PASSWD=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.password' | awk -F\" '{print $4}'`
-LAB_DATABASE_NAME=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.name' | awk -F\" '{print $4}'`
-LAB_DATABASE_USER=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.user' | awk -F\" '{print $4}'`
+LAB_DATABASE_IP=`vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep 'lab.db.ip' | awk -F\" '{print $4}'`
+LAB_DATABASE_FQDN=`vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep 'lab.db.fqdn' | awk -F\" '{print $4}'`
+LAB_DATABASE_PASSWD=`vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep 'lab.db.password' | awk -F\" '{print $4}'`
+LAB_DATABASE_NAME=`vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep 'lab.db.name' | awk -F\" '{print $4}'`
+LAB_DATABASE_USER=`vmtoolsd --cmd "info-get guestinfo.ovfEnv" | grep 'lab.db.user' | awk -F\" '{print $4}'`
 
 echo "$LAB_DATABASE_IP -  $LAB_DATABASE_FQDN - $LAB_DATABASE_PASSWD - $LAB_DATABASE_NAME"
 
