@@ -16,6 +16,18 @@ LAB_DATABASE_PASSWD=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.p
 LAB_DATABASE_NAME=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.name' | awk -F\" '{print $4}'`
 LAB_DATABASE_USER=`vmtoolsd --cmd "info-get guestInfo.ovfEnv" | grep 'lab.db.user' | awk -F\" '{print $4}'`
 
+temppasswd=$(grep "temporary password" /var/log/mysqld.log | awk '{print $13}')
+mysqladmin -u root -p $temppasswd password $LAB_DATABASE_PASSWD
+
 echo "DATABASE IP: $LAB_DATABASE_IP" >> /tmp/dploy.log
 echo "DATABASE FQDN: $LAB_DATABASE_FQDN" >> /tmp/dploy.log
 echo "DATABASE User: $LAB_DATABASE_USER" >> /tmp/dploy.log
+echo "DATABASE Temp Pass: $temppasswd" >> /tmp/dploy.log
+
+cat << EOF > /root/.my.cnf
+[mysql]
+user=root
+password=$PASSSWORD
+EOF
+
+mysql -u root < /tmp/dploy/create-db.sql
