@@ -1,9 +1,9 @@
 #!/bin/bash
 
-yum update
+yum update -y
 
 wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm -P /tmp/dploy
-rpm -ivh /tmp/dploy mysql80-community-release-el7-3.noarch.rpm
+rpm -ivh /tmp/dploy/mysql80-community-release-el7-3.noarch.rpm
 
 yum install -y mysql-server
 
