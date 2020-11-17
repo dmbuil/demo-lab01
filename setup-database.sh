@@ -69,7 +69,7 @@ FLUSH PRIVLEGES;
 EOF
 
 # Creates the Database
-mysql -u < /tmp/dploy/create-db.sql
+mysql -uroot < /tmp/dploy/create-db.sql
 
 # Creates the User
-mysql -u < /tmp/dploy/create-user.sql
+mysql -uroot < /tmp/dploy/create-user.sql
