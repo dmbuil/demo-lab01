@@ -73,3 +73,8 @@ mysql -uroot < /tmp/dploy/create-db.sql
 
 # Creates the User
 mysql -uroot < /tmp/dploy/create-user.sql
+
+# Opens ports
+firewall-cmd --permanent --zone=trusted --add-source=10.0.2.0/24
+firewall-cmd --permanent --zone=trusted --add-port=3306/tcp
+firewall-cmd  --reload
