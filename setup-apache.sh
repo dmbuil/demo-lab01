@@ -24,6 +24,7 @@ echo "DATABASE FQDN: $LAB_DATABASE_FQDN" >> /tmp/dploy.log
 echo "DATABASE User: $LAB_DATABASE_USER" >> /tmp/dploy.log
 echo "DATABASE Temp Pass: $temppasswd" >> /tmp/dploy.log
 
-firewall-cmd --permanent --zone=trusted --add-source=10.0.2.0/24
-firewall-cmd --permanent --zone=trusted --add-port=80/tcp
+firewall-cmd --add-service=http --permanent
 firewall-cmd  --reload
+
+#sed -i "s/{lab.db.fqdn}/$LAB_DATABASE_FQDN/g" /etc/httpd/conf/httpd.conf
