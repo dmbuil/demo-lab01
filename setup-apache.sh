@@ -24,10 +24,6 @@ echo "DATABASE FQDN: $LAB_DATABASE_FQDN" >> /tmp/dploy.log
 echo "DATABASE User: $LAB_DATABASE_USER" >> /tmp/dploy.log
 echo "DATABASE Temp Pass: $temppasswd" >> /tmp/dploy.log
 
-cat << EOF > /root/.my.cnf
-[mysql]
-user=root
-password=$PASSSWORD
-EOF
-
-mysql -u root < /tmp/dploy/create-db.sql
+firewall-cmd --permanent --zone=trusted --add-source=10.0.2.0/24
+firewall-cmd --permanent --zone=trusted --add-port=80/tcp
+firewall-cmd  --reload
