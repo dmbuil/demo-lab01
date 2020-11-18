@@ -24,6 +24,13 @@
 
 		$con = mysqli_connect('{lab.db.fqdn}', '{lab.db.user}', '{lab.db.password}');
 		mysqli_select_db($con, 'acmedb');
+		
+		if (!$con) {
+		    echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+		    echo "errno de depuración: " . mysqli_connect_errno() . PHP_EOL;
+		    echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+		    exit;
+		}
 
 		$result = mysqli_query($con, "SELECT * FROM `posts`");
 
